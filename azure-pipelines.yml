@@ -5,6 +5,7 @@
 
 trigger:
 - master
+  batch: true
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
