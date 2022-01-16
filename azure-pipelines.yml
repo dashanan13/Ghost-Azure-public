@@ -4,10 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-  batch: true
-  branches:
-    include:
-    - master
+  - master
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
@@ -17,7 +14,7 @@ stages:
 - stage: BuildGhost
   displayName: Build Ghost
   pool:
-    vmImage: 'vs2017-win2016'
+    name: 'mohitAzure'
   jobs:
     - job: BuildGhost
       displayName: Build Ghost
@@ -189,7 +186,7 @@ stages:
   dependsOn: BuildGhost
   condition: succeeded('BuildGhost')
   pool:
-    vmImage: 'vs2017-win2016'
+    name: 'mohitAzure'
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
@@ -239,7 +236,7 @@ stages:
   dependsOn: DeployStaging
   condition: succeeded('DeployStaging')
   pool:
-    vmImage: 'vs2017-win2016'
+    name: 'mohitAzure'
   jobs:
   - deployment: DeployProduction
     displayName: Deploy Production
@@ -279,7 +276,7 @@ stages:
     condition: succeeded('DelayUpdateStaging')
     environment: $(EnvironmentStaging)
     pool:
-      vmImage: 'vs2017-win2016'
+      name: 'mohitAzure'
     strategy:
       runOnce:
         deploy:
