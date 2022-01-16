@@ -8,7 +8,7 @@ trigger:
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  
+  AzureSubscription: 'Azure subscription 1'
 
 stages:
 - stage: BuildGhost
