@@ -24,7 +24,7 @@
         "2",
         "3"
       ],
-      "defaultValue": "2"
+      "defaultValue": "1"
     },
     "Deploy App Insights": {
       "type": "bool",
