@@ -50,7 +50,7 @@ stages:
                   $resourceType = "Microsoft.Web/sites/slots/config"
                   $resourceName = "$webAppName/$slotName/publishingcredentials"
                 }
-                $publishingCredentials = Invoke-AzureRmResourceAction -ResourceGroupName $resourceGroupName -ResourceType $resourceType -ResourceName $resourceName -Action list -ApiVersion 2015-08-01 -Force
+                $publishingCredentials = Invoke-AzResourceAction -ResourceGroupName $resourceGroupName -ResourceType $resourceType -ResourceName $resourceName -Action list -ApiVersion 2015-08-01 -Force
                 return $publishingCredentials
             }
             function Get-KuduApiAuthorisationHeaderValue($resourceGroupName, $webAppName, $slotName = $null){
