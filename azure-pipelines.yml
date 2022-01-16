@@ -8,6 +8,7 @@ trigger:
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  AzureSubscription: 'Atea-Sandbox-NO' 
 
 stages:
 - stage: BuildGhost
