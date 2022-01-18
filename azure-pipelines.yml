@@ -43,8 +43,7 @@ stages:
           azureSubscription: '$(AzureSubscription)'
           ScriptType: 'InlineScript'
           Inline: |
-            $resourceGroupName = ${env:resourceGroup}
-            $webAppName = ${env:webApp}
+            
             function Get-AzureRmWebAppPublishingCredentials($resourceGroupName, $webAppName, $slotName = $null){
                 if ([string]::IsNullOrWhiteSpace($slotName)){
                   $resourceType = "Microsoft.Web/sites/config"
