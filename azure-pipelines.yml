@@ -56,6 +56,8 @@ stages:
                 }
                 
                 $publishingCredentials = Invoke-AzResourceAction -ResourceGroupName $resourceGroupName -ResourceType $resourceType -ResourceName $resourceName -Action list -ApiVersion 2015-08-01 -Force
+                write-host "Publishing credentials:"
+                write-host $publishingCredentials
                 return $publishingCredentials
             }
             function Get-KuduApiAuthorisationHeaderValue($resourceGroupName, $webAppName, $slotName = $null){
@@ -63,6 +65,8 @@ stages:
                   $slotName = $null
                 }
                 $publishingCredentials = Get-AzureRmWebAppPublishingCredentials $resourceGroupName $webAppName $slotName
+                write-host "KuduApiAuthorisationHeaderValue:"
+                write-host ("Basic {0}" -f [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $publishingCredentials.Properties.PublishingUserName, $publishingCredentials.Properties.PublishingPassword))))
                 return ("Basic {0}" -f [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $publishingCredentials.Properties.PublishingUserName, $publishingCredentials.Properties.PublishingPassword))))
             }
             function Start-WebJob($resourceGroupName, $webAppName, $slotName = $null, $webJobName){
@@ -76,7 +80,7 @@ stages:
                 else{
                     $kuduApiUrl = "https://$webAppName`-$slotName.scm.azurewebsites.net/api/triggeredwebjobs/$webJobName/run"
                 }
-            
+                write-host "Reached invoke method"
                 Invoke-RestMethod -Uri $kuduApiUrl `
                                     -Headers @{"Authorization"=$kuduApiAuthorisationToken} `
                                     -Method POST `
