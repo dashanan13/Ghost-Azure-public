@@ -110,6 +110,10 @@ stages:
             $webJobName = $env:WEBJOBNAME
             
             Write-Host "Trigger database backup"
+            Write-Host $resourceGroup
+            Write-Host $webApp
+            Write-Host $slotName
+            Write-Host $webJobName
             Start-WebJob $resourceGroup $webApp $slotName $webJobName
             
             Write-Host "Wait for job to finish"
