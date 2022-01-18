@@ -43,7 +43,9 @@ stages:
           azureSubscription: '$(AzureSubscription)'
           ScriptType: 'InlineScript'
           Inline: |
-            function Get-AzureRmWebAppPublishingCredentials("$(resourceGroupName)", "$(webAppName)", $slotName = $null){
+            $resourceGroupName = ${env:resourceGroup}
+            $webAppName = ${env:webApp}
+            function Get-AzureRmWebAppPublishingCredentials($resourceGroupName, $webAppName, $slotName = $null){
                 if ([string]::IsNullOrWhiteSpace($slotName)){
                   $resourceType = "Microsoft.Web/sites/config"
                   $resourceName = "$webAppName/publishingcredentials"
@@ -52,6 +54,7 @@ stages:
                   $resourceType = "Microsoft.Web/sites/slots/config"
                   $resourceName = "$webAppName/$slotName/publishingcredentials"
                 }
+                
                 $publishingCredentials = Invoke-AzResourceAction -ResourceGroupName $resourceGroupName -ResourceType $resourceType -ResourceName $resourceName -Action list -ApiVersion 2015-08-01 -Force
                 return $publishingCredentials
             }
