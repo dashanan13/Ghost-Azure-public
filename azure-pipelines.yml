@@ -206,7 +206,7 @@ stages:
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
-    environment: '$(EnvironmentStaging)'
+    
     strategy:
       runOnce:
         deploy:
