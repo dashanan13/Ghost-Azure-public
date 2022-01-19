@@ -209,7 +209,7 @@ stages:
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
-    environment: $(EnvironmentStaging)
+    environment: EnvironmentStaging
     strategy:
       runOnce:
         deploy:
@@ -259,7 +259,7 @@ stages:
   jobs:
   - deployment: DeployProduction
     displayName: Deploy Production
-    environment: $(EnvironmentProduction)
+    environment: EnvironmentProduction
     strategy:
       runOnce:
         deploy:
