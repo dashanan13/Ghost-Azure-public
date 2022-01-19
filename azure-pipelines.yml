@@ -197,6 +197,9 @@ stages:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)\ArtifactsToBePublished'
           ArtifactName: 'drop'
           publishLocation: 'Container'
+
+
+
 - stage: DeployStaging
   displayName: Deploy Staging
   dependsOn: BuildGhost
@@ -206,7 +209,7 @@ stages:
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
-    
+    environment: $(StagingProduction)
     strategy:
       runOnce:
         deploy:
