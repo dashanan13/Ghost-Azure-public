@@ -293,7 +293,7 @@ stages:
     displayName: Update Staging
     dependsOn: DelayUpdateStaging
     condition: succeeded('DelayUpdateStaging')
-    environment: $(EnvironmentStaging)
+    environment: EnvironmentStaging
     pool:
       name: 'mohitAzure'
     strategy:
