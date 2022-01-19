@@ -149,6 +149,9 @@ stages:
           destinationFolder: 'content/themes/casper'
           cleanDestinationFolder: true
 
+      - powershell: 'Remove-Item "$(Build.Repository.LocalPath)/content/data/ghost.db" -ErrorAction Continue'
+        displayName: 'Rename database file'
+
       - powershell: 'Rename-Item "$(Build.Repository.LocalPath)/content/data/backup.db" "ghost.db"'
         displayName: 'Rename database file'
 
