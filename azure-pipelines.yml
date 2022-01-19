@@ -124,8 +124,8 @@ stages:
             Write-Host "Download content/images folder"
             Start-ZipDownload $resourceGroup $webApp $slotName "content/images" "images.zip"
             
-            Write-Host "Download content/themes/casperforyr folder"
-            Start-ZipDownload $resourceGroup $webApp $slotName "content/themes/casperforyr" "casperforyr.zip"
+            Write-Host "Download content/themes/casper folder"
+            Start-ZipDownload $resourceGroup $webApp $slotName "content/themes/casper" "casper.zip"
           azurePowerShellVersion: 'LatestVersion'
 
       - task: ExtractFiles@1
@@ -143,10 +143,10 @@ stages:
           cleanDestinationFolder: true
 
       - task: ExtractFiles@1
-        displayName: 'Extract casperforyr.zip'
+        displayName: 'Extract casper.zip'
         inputs:
-          archiveFilePatterns: 'casperforyr.zip'
-          destinationFolder: 'content/themes/casperforyr'
+          archiveFilePatterns: 'casper.zip'
+          destinationFolder: 'content/themes/casper'
           cleanDestinationFolder: true
 
       - powershell: 'Rename-Item "$(Build.Repository.LocalPath)/content/data/backup.db" "ghost.db"'
