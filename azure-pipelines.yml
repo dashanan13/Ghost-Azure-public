@@ -108,7 +108,7 @@ stages:
             $slotName = $env:SLOTNAME
             $webJobName = $env:WEBJOBNAME
             
-            Write-Host "Trigger database backup,webjob uploaded"
+            Write-Host "Trigger database backup, webjob uploaded"
             Write-Host $resourceGroup
             Write-Host $webApp
             Write-Host $slotName
