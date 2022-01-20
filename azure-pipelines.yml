@@ -32,8 +32,6 @@ stages:
             v3 | yarn
           path: $(YARN_CACHE_FOLDER)
         displayName: Cache Yarn packages
-
-      - script: whoami
       
       - script: yarn --ignore-engines --production
 
