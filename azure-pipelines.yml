@@ -248,6 +248,7 @@ stages:
             inputs:
               Url: '$(UrlStaging)'
               SleepPeriod: '10'
+              
 - stage: DeployProduction
   displayName: Deploy Production
   dependsOn: DeployStaging
@@ -275,62 +276,4 @@ stages:
             inputs:
               Url: '$(UrlProduction)'
               SleepPeriod: '10'
-- stage: UpdateStaging
-  displayName: Update Staging
-  dependsOn: DeployProduction
-  condition: succeeded('DeployProduction')
-  jobs:
-  - job: DelayUpdateStaging
-    displayName: Delay Update Staging
-    pool: server
-    steps:
-      - task: Delay@1
-        inputs:
-          delayForMinutes: '15'
-  - deployment: UpdateStaging
-    displayName: Update Staging
-    dependsOn: DelayUpdateStaging
-    condition: succeeded('DelayUpdateStaging')
-    environment: EnvironmentStaging
-    pool:
-      name: 'mohitAzure'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureAppServiceManage@0
-            displayName: 'Stop Azure App Service'
-            inputs:
-              azureSubscription: '$(AzureSubscription)'
-              Action: 'Stop Azure App Service'
-              WebAppName: '$(WebApp)'
-              SpecifySlotOrASE: true
-              ResourceGroupName: '$(ResourceGroup)'
-              Slot: '$(SlotNameStaging)'
-          - task: AzureRmWebAppDeployment@4
-            displayName: 'Deploy Azure App Service to Slot'
-            inputs:
-              ConnectionType: 'AzureRM'
-              azureSubscription: '$(AzureSubscription)'
-              appType: 'webApp'
-              WebAppName: '$(WebApp)'
-              deployToSlotOrASE: true
-              ResourceGroupName: '$(ResourceGroup)'
-              SlotName: '$(SlotNameStaging)'
-              packageForLinux: '$(Pipeline.Workspace)\**\$(Build.BuildId).zip'
-              enableCustomDeployment: true
-              DeploymentType: 'webDeploy'
-              ExcludeFilesFromAppDataFlag: false
-          - task: AzureAppServiceManage@0
-            displayName: 'Start Azure App Service'
-            inputs:
-              azureSubscription: '$(AzureSubscription)'
-              Action: 'Start Azure App Service'
-              WebAppName: '$(WebApp)'
-              SpecifySlotOrASE: true
-              ResourceGroupName: '$(ResourceGroup)'
-              Slot: '$(SlotNameStaging)'
-          - task: Webapp Warmup@1
-            inputs:
-              Url: '$(UrlStaging)'
-              SleepPeriod: '10'
+
