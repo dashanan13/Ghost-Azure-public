@@ -319,7 +319,7 @@ stages:
               deployToSlotOrASE: true
               ResourceGroupName: '$(ResourceGroup)'
               SlotName: '$(SlotNameStaging)'
-              packageForLinux: '$(Pipeline.Workspace)\**\*.zip'
+              packageForLinux: '$(Pipeline.Workspace)\**\$(Build.BuildId).zip'
               enableCustomDeployment: true
               DeploymentType: 'webDeploy'
               ExcludeFilesFromAppDataFlag: false
