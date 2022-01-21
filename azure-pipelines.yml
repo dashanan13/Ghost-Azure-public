@@ -124,6 +124,10 @@ stages:
             
             Write-Host "Download content/themes/casper folder"
             Start-ZipDownload $resourceGroup $webApp $slotName "content/themes/casper" "casper.zip"
+
+            Write-Host "Download App_Data folder"
+            Start-ZipDownload $resourceGroup $webApp $slotName "App_Data" "App_Data.zip"
+
           azurePowerShellVersion: 'LatestVersion'
 
       - task: ExtractFiles@1
@@ -145,6 +149,13 @@ stages:
         inputs:
           archiveFilePatterns: 'casper.zip'
           destinationFolder: 'content/themes/casper'
+          cleanDestinationFolder: true
+
+      - task: ExtractFiles@1
+        displayName: 'Extract App_Data.zip'
+        inputs:
+          archiveFilePatterns: 'App_Data.zip'
+          destinationFolder: 
           cleanDestinationFolder: true
 
       - powershell: 'Remove-Item "$(Build.Repository.LocalPath)/content/data/ghost.db" -ErrorAction Continue'
