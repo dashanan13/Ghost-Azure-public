@@ -92,7 +92,7 @@
     {
       "name": "[parameters('siteName')]",
       "type": "Microsoft.Web/sites",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('webapplocation')]",
       "apiVersion": "2018-11-01",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
@@ -159,7 +159,7 @@
     {
       "name": "[variables('appInsightsName')]",
       "type": "Microsoft.Insights/components",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('webapplocation')]",
       "apiVersion": "2014-04-01",
       "condition": "[parameters('Deploy App Insights')]",
       "dependsOn": [
