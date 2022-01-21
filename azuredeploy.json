@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.2",
   "parameters": {
@@ -17,13 +17,13 @@
       ],
       "defaultValue": "Basic"
     },
-    "webapplocation": {
+    "WebApp Location": {
       "type": "string",
       "allowedValues": [
         "West Europe",
         "North Europe"
       ],
-      "defaultValue": "Basic"
+      "defaultValue": "North Europe"
     },
     "Worker Size": {
       "type": "string",
