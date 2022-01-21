@@ -17,6 +17,14 @@
       ],
       "defaultValue": "Basic"
     },
+    "webapplocation": {
+      "type": "string",
+      "allowedValues": [
+        "West Europe",
+        "North Europe"
+      ],
+      "defaultValue": "Basic"
+    },
     "Worker Size": {
       "type": "string",
       "allowedValues": [
@@ -70,7 +78,7 @@
     {
       "name": "[parameters('hostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('webapplocation')]",
       "apiVersion": "2018-02-01",
       "sku": {
         "name": "[variables('sku')]"
