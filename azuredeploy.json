@@ -78,7 +78,7 @@
     {
       "name": "[parameters('hostingPlanName')]",
       "type": "Microsoft.Web/serverfarms",
-      "location": "[parameters('webapplocation')]",
+      "location": "[parameters('WebApp Location')]",
       "apiVersion": "2018-02-01",
       "sku": {
         "name": "[variables('sku')]"
@@ -92,7 +92,7 @@
     {
       "name": "[parameters('siteName')]",
       "type": "Microsoft.Web/sites",
-      "location": "[parameters('webapplocation')]",
+      "location": "[parameters('WebApp Location')]",
       "apiVersion": "2018-11-01",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
@@ -159,7 +159,7 @@
     {
       "name": "[variables('appInsightsName')]",
       "type": "Microsoft.Insights/components",
-      "location": "[parameters('webapplocation')]",
+      "location": "[parameters('WebApp Location')]",
       "apiVersion": "2014-04-01",
       "condition": "[parameters('Deploy App Insights')]",
       "dependsOn": [
