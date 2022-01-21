@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/u51282/ghost-azure/_apis/build/status/dashanan13.Ghost-Azure?branchName=master)](https://dev.azure.com/u51282/ghost-azure/_build/latest?definitionId=1&branchName=master)
+
 # Ghost-Azure 
 ## Why Ghost-Azure?
 Straight out of the box, the current 1.x and 2.x versions of Ghost aren't compatible with the Azure App Service. Ghost-Azure resolves this by providing a production-ready template which can be hosted directly on Azure App Service. In the background, an Azure Function ([Ghost-Release-Uploader](https://github.com/YannickRe/Ghost-Release-Uploader)) makes sure that this repository stays up-to-date with the latest releases of Ghost.
