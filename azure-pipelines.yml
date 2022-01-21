@@ -275,7 +275,7 @@ stages:
         deploy:
           steps:
           - task: AzureAppServiceManage@0
-            displayName: 'Swaping Slots'
+            displayName: 'Swaping the Slots'
             inputs:
               azureSubscription: '$(AzureSubscription)'
               Action: 'Swap Slots'
