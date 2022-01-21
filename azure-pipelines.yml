@@ -36,7 +36,7 @@ stages:
       - script: yarn --ignore-engines --production
 
       - task: AzurePowerShell@5
-        displayName: 'Download file from production'
+        displayName: 'Download files from production'
         inputs:
           azureSubscription: '$(AzureSubscription)'
           ScriptType: 'InlineScript'
