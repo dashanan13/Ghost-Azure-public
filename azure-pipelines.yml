@@ -102,7 +102,7 @@ stages:
             }
             
             $resourceGroup = $env:RESOURCEGROUP
-            $webApp = $env:WEBAPP
+            $webApp = $env:WEBAPP1
             $slotName = $env:SLOTNAME
             $webJobName = $env:WEBJOBNAME
             
