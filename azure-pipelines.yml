@@ -14,7 +14,7 @@ stages:
 - stage: BuildGhost
   displayName: Build Ghost
   pool:
-    name: 'mohitAzure'
+    name: 'Default'
   jobs:
     - job: BuildGhost
       displayName: Build Ghost
@@ -209,12 +209,12 @@ stages:
 
 
 
-- stage: DeployStaging
-  displayName: Deploy Staging
+- stage: DeployWebApp1Staging
+  displayName: Deploy Webapp1 Staging
   dependsOn: BuildGhost
   condition: succeeded('BuildGhost')
   pool:
-    name: 'mohitAzure'
+    name: 'Default'
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
@@ -228,7 +228,7 @@ stages:
             inputs:
               azureSubscription: '$(AzureSubscription)'
               Action: 'Stop Azure App Service'
-              WebAppName: '$(WebApp)'
+              WebAppName: '$(WebApp1)'
               SpecifySlotOrASE: true
               ResourceGroupName: '$(ResourceGroup)'
               Slot: '$(SlotNameStaging)'
@@ -238,7 +238,7 @@ stages:
               ConnectionType: 'AzureRM'
               azureSubscription: '$(AzureSubscription)'
               appType: 'webApp'
-              WebAppName: '$(WebApp)'
+              WebAppName: '$(WebApp1)'
               deployToSlotOrASE: true
               ResourceGroupName: '$(ResourceGroup)'
               SlotName: '$(SlotNameStaging)'
@@ -251,21 +251,21 @@ stages:
             inputs:
               azureSubscription: '$(AzureSubscription)'
               Action: 'Start Azure App Service'
-              WebAppName: '$(WebApp)'
+              WebAppName: '$(WebApp1)'
               SpecifySlotOrASE: true
               ResourceGroupName: '$(ResourceGroup)'
               Slot: '$(SlotNameStaging)'
           - task: Webapp Warmup@1
             inputs:
-              Url: '$(UrlStaging)'
+              Url: '$(UrlStaging1)'
               SleepPeriod: '10'
               
-- stage: DeployProduction
-  displayName: Deploy Production
-  dependsOn: DeployStaging
-  condition: succeeded('DeployStaging')
+- stage: DeployWebapp1Production
+  displayName: Deploy Webapp1 Production
+  dependsOn: DeployWebApp1Staging
+  condition: succeeded('DeployWebApp1Staging')
   pool:
-    name: 'mohitAzure'
+    name: 'Default'
   jobs:
   - deployment: DeployProduction
     displayName: Deploy Production
@@ -279,12 +279,93 @@ stages:
             inputs:
               azureSubscription: '$(AzureSubscription)'
               Action: 'Swap Slots'
-              WebAppName: '$(WebApp)'
+              WebAppName: '$(WebApp1)'
               ResourceGroupName: '$(ResourceGroup)'
               SourceSlot: '$(SlotNameStaging)'
 
           - task: Webapp Warmup@1
             inputs:
-              Url: '$(UrlProduction)'
+              Url: '$(UrlProduction1)'
+              SleepPeriod: '10'
+
+
+
+- stage: DeployWebApp2Staging
+  displayName: Deploy Webapp2 Staging
+  dependsOn: BuildGhost
+  condition: succeeded('BuildGhost')
+  pool:
+    name: 'Default'
+  jobs:
+  - deployment: DeployStaging
+    displayName: Deploy Staging
+    environment: EnvironmentStaging
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureAppServiceManage@0
+            displayName: 'Stop Azure App Service'
+            inputs:
+              azureSubscription: '$(AzureSubscription)'
+              Action: 'Stop Azure App Service'
+              WebAppName: '$(WebApp2)'
+              SpecifySlotOrASE: true
+              ResourceGroupName: '$(ResourceGroup)'
+              Slot: '$(SlotNameStaging)'
+          - task: AzureRmWebAppDeployment@4
+            displayName: 'Deploy Azure App Service to Slot'
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: '$(AzureSubscription)'
+              appType: 'webApp'
+              WebAppName: '$(WebApp2)'
+              deployToSlotOrASE: true
+              ResourceGroupName: '$(ResourceGroup)'
+              SlotName: '$(SlotNameStaging)'
+              packageForLinux: '$(Pipeline.Workspace)\**\$(Build.BuildId).zip'
+              enableCustomDeployment: true
+              DeploymentType: 'webDeploy'
+              ExcludeFilesFromAppDataFlag: false
+          - task: AzureAppServiceManage@0
+            displayName: 'Start Azure App Service'
+            inputs:
+              azureSubscription: '$(AzureSubscription)'
+              Action: 'Start Azure App Service'
+              WebAppName: '$(WebApp2)'
+              SpecifySlotOrASE: true
+              ResourceGroupName: '$(ResourceGroup)'
+              Slot: '$(SlotNameStaging)'
+          - task: Webapp Warmup@1
+            inputs:
+              Url: '$(UrlStaging2)'
+              SleepPeriod: '10'
+              
+- stage: DeployWebapp2Production
+  displayName: Deploy Webapp2 Production
+  dependsOn: DeployWebApp2Staging
+  condition: succeeded('DeployWebApp2Staging')
+  pool:
+    name: 'Default'
+  jobs:
+  - deployment: DeployProduction
+    displayName: Deploy Production
+    environment: EnvironmentProduction
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureAppServiceManage@0
+            displayName: 'Swaping the Slots'
+            inputs:
+              azureSubscription: '$(AzureSubscription)'
+              Action: 'Swap Slots'
+              WebAppName: '$(WebApp2)'
+              ResourceGroupName: '$(ResourceGroup)'
+              SourceSlot: '$(SlotNameStaging)'
+
+          - task: Webapp Warmup@1
+            inputs:
+              Url: '$(UrlProduction2)'
               SleepPeriod: '10'
 
