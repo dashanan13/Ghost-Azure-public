@@ -14,7 +14,7 @@ stages:
 - stage: BuildGhost
   displayName: Build Ghost
   pool:
-    name: 'Default'
+    name: 'Azure Pipelines'
   jobs:
     - job: BuildGhost
       displayName: Build Ghost
@@ -214,7 +214,7 @@ stages:
   dependsOn: BuildGhost
   condition: succeeded('BuildGhost')
   pool:
-    name: 'Default'
+    name: 'Azure Pipelines'
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
@@ -265,7 +265,7 @@ stages:
   dependsOn: DeployWebApp1Staging
   condition: succeeded('DeployWebApp1Staging')
   pool:
-    name: 'Default'
+    name: 'Azure Pipelines'
   jobs:
   - deployment: DeployProduction
     displayName: Deploy Production
@@ -295,7 +295,7 @@ stages:
   dependsOn: BuildGhost
   condition: succeeded('BuildGhost')
   pool:
-    name: 'Default'
+    name: 'Azure Pipelines'
   jobs:
   - deployment: DeployStaging
     displayName: Deploy Staging
@@ -346,7 +346,7 @@ stages:
   dependsOn: DeployWebApp2Staging
   condition: succeeded('DeployWebApp2Staging')
   pool:
-    name: 'Default'
+    name: 'Azure Pipelines'
   jobs:
   - deployment: DeployProduction
     displayName: Deploy Production
