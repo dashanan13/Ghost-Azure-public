@@ -149,13 +149,13 @@
       "location": "[parameters('1st WebApp Location')]",
       "apiVersion": "2014-04-01",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('hostingPlanName1'))]"
+        "[resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))]"
       ],
       "tags": {
         "displayName": "[variables('appInsightsName1')]"
       },
       "properties": {
-        "ApplicationId": "[resourceId('Microsoft.Web/sites', variables('hostingPlanName1'))]",
+        "ApplicationId": "[resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))]",
         "Application_Type": "Node.JS"
       }
     },
@@ -254,13 +254,13 @@
       "location": "[parameters('2nd WebApp Location')]",
       "apiVersion": "2014-04-01",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('hostingPlanName2'))]"
+        "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]"
       ],
       "tags": {
         "displayName": "[variables('appInsightsName2')]"
       },
       "properties": {
-        "ApplicationId": "[resourceId('Microsoft.Web/sites', variables('hostingPlanName2'))]",
+        "ApplicationId": "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]",
         "Application_Type": "Node.JS"
       }
     },
