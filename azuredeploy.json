@@ -86,7 +86,7 @@
     // Code repository details
     "repoUrl": {
       "type": "string",
-      "defaultValue": "https://github.com/dashanan13/Ghost-Azure/tree/master"
+      "defaultValue": "https://github.com/dashanan13/Ghost-Azure"
     },
     "branch": {
       "type": "string",
@@ -99,7 +99,7 @@
       "metadata": {
         "description": "The name of the frontdoor resource."
       },
-      "defaultValue": "[concat(parameters('Webapp Name prefix'), uniqueString(resourceGroup().id))]"
+      "defaultValue": "[concat(parameters('Webapp Name prefix'), '-', uniqueString(resourceGroup().id))]"
     }
   },
     
@@ -373,7 +373,9 @@
             "name": "[parameters('FrontDoorName')]",
             "location": "[variables('frontdoorLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/frontdoorwebapplicationfirewallpolicies', variables('wafPolicyNameForFrontDoor'))]"
+                "[resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))]",
+                "[resourceId('Microsoft.Network/frontdoorwebapplicationfirewallpolicies', variables('wafPolicyNameForFrontDoor'))]",
+                "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]"
             ],
             "properties": {
                 "routingRules": [
