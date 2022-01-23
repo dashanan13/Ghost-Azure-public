@@ -82,7 +82,6 @@
       "type": "string",
       "defaultValue": ""
     },
-
     // Code repository details
     "repoUrl": {
       "type": "string",
@@ -92,7 +91,7 @@
       "type": "string",
       "defaultValue": "master"
     },
-    
+  
     //front door configuration
     "FrontDoorName": {
       "type": "string",
@@ -122,7 +121,6 @@
 
     "wafPolicyNameForFrontDoor": "wafPolicyForFrontDoor"
   },
-
 
   "resources": [
     //Creating resources for and Webaapp 1
@@ -433,7 +431,7 @@
                 "resourceState": "Enabled",
                 "loadBalancingSettings": [
                     {
-                        "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/LoadBalancingSettings/loadBalancingSettings-', uniqueString(resourceGroup().id))]",
+                        "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/LoadBalancingSettings/loadBalancingSettings-1642866983480')]",
                         "name": "loadBalancingSettings-1642866983480",
                         "properties": {
                             "resourceState": "Enabled",
@@ -445,7 +443,7 @@
                 ],
                 "healthProbeSettings": [
                     {
-                        "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/HealthProbeSettings/healthProbeSettings-', uniqueString(resourceGroup().id))]",
+                        "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/HealthProbeSettings/healthProbeSettings-1642866983480')]",
                         "name": "healthProbeSettings-1642866983480",
                         "properties": {
                             "resourceState": "Enabled",
@@ -484,10 +482,10 @@
                             ],
                             "resourceState": "Enabled",
                             "loadBalancingSettings": {
-                                "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/loadBalancingSettings/loadBalancingSettings-', uniqueString(resourceGroup().id))]"
+                                "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/loadBalancingSettings/loadBalancingSettings-1642866983480')]"
                             },
                             "healthProbeSettings": {
-                                "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/healthProbeSettings/healthProbeSettings-', uniqueString(resourceGroup().id))]"
+                                "id": "[concat(resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName')), '/healthProbeSettings/healthProbeSettings-1642866983480')]"
                             }
                         }
                     }
