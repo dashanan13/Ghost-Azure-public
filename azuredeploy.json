@@ -51,7 +51,7 @@
         "2",
         "3"
       ],
-      "defaultValue": "1",
+      "defaultValue": "2",
       "metadata": {
           "description": "This is common for both Webapps"
         }
@@ -111,7 +111,7 @@
     
     "webapp1address": "[concat(variables('uniquewebappname1'), '.azurewebsites.net')]",
     "webapp2address": "[concat(variables('uniquewebappname2'), '.azurewebsites.net')]",
-
+    
     "appInsightsName1": "[concat(variables('uniquewebappname1'), '-insights')]",
     "appInsightsName2": "[concat(variables('uniquewebappname2'), '-insights')]",
     "hostingPlanName1": "[concat(variables('uniquewebappname1'), '-plan')]",
@@ -286,12 +286,43 @@
           "name": "web",
           "type": "config",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]"
+            "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]",
+            "[resourceId('Microsoft.Network/frontdoors',parameters('FrontDoorName'))]" 
           ],
           "properties": {
             "use32BitWorkerProcess": false,
             "httpsOnly": true,
-            "alwaysOn": true
+            "alwaysOn": true,
+            "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "AzureFrontDoor.Backend",
+                        "action": "Allow",
+                        "tag": "ServiceTag",
+                        "priority": 1,
+                        "name": "frontdoorallowrule",
+                        "headers": {
+                            "x-azure-fdid": [
+                                "[resourceId('Microsoft.Network/frontdoors',parameters('FrontDoorName'))]"  //getting frontdoor id
+                            ]
+                        }
+                    },
+                    {
+                        "ipAddress": "Any",
+                        "action": "Deny",
+                        "priority": 2147483647,
+                        "name": "Deny all", 
+                        "description": "Deny all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ]
           }
         },
         {
@@ -330,6 +361,121 @@
           }
         }
       ]
+    },
+
+    //Creating Webapp slots
+    {
+        "type": "Microsoft.Web/sites/slots",
+        "apiVersion": "2021-02-01",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName2'))]"
+          ],
+        "name": "[concat(variables('uniquewebappname2'), '/staging')]",
+        "location": "[parameters('2nd WebApp Location')]",
+        "kind": "app",
+        "properties": {
+            "enabled": true,
+            "hostNameSslStates": [
+                {
+                    "name": "[concat(variables('uniquewebappname2'), '-staging.azurewebsites.net')]",
+                    "sslState": "Disabled",
+                    "hostType": "Standard"
+                },
+                {
+                    "name": "[concat(variables('uniquewebappname2'), '-staging.scm.azurewebsites.net')]",
+                    "sslState": "Disabled",
+                    "hostType": "Repository"
+                }
+            ],
+            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName2'))]",
+            "siteConfig": {
+                "numberOfWorkers": 1,
+                "alwaysOn": true
+            },
+            "httpsOnly": false
+        }
+    },
+/*
+    {
+        "type": "Microsoft.Web/sites/slots/basicPublishingCredentialsPolicies",
+        "apiVersion": "2021-02-01",
+        "name": "[concat(variables('uniquewebappname2'), '/staging/ftp')]",
+        "location": "[parameters('2nd WebApp Location')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname2'), 'staging')]"
+        ],
+        "properties": {
+            "allow": true
+        }
+    },
+    {
+        "type": "Microsoft.Web/sites/slots/basicPublishingCredentialsPolicies",
+        "apiVersion": "2021-02-01",
+        "name": "[concat(variables('uniquewebappname2'), '/staging/scm')]",
+        "location": "[parameters('2nd WebApp Location')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname2'), 'staging')]"
+        ],
+        "properties": {
+            "allow": true
+        }
+    },
+
+    {
+        "type": "Microsoft.Web/sites/slots/hostNameBindings",
+        "apiVersion": "2021-02-01",
+        "name": "[concat(variables('uniquewebappname2'), '/staging/', variables('uniquewebappname2'), '-staging.azurewebsites.net')]",
+        "location": "[parameters('2nd WebApp Location')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname2'), 'staging')]"
+        ],
+        "properties": {
+            "siteName": "ghost-azure1-krjbilcmsyrni(staging)",
+            "hostNameType": "Verified"
+        }
+    },
+    {
+        "type": "Microsoft.Web/sites/slots/snapshots",
+        "apiVersion": "2015-08-01",
+        "name": "[concat(variables('uniquewebappname2'), '/staging/2022-01-23T13_42_12_7948628')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname2'), 'staging')]"
+        ]
+    },
+*/
+    {
+        "type": "Microsoft.Web/sites/slots/config",
+        "apiVersion": "2021-02-01",
+        "name": "[concat(variables('uniquewebappname2'), '/staging/web')]",
+        "location": "[parameters('2nd WebApp Location')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname2'), 'staging')]"
+        ],
+        "properties": {
+            "numberOfWorkers": 1,
+            "alwaysOn": true,
+            "ipSecurityRestrictions": [
+                {
+                    "ipAddress": "Any",
+                    "action": "Allow",
+                    "priority": 1,
+                    "name": "Allow all",
+                    "description": "Allow all access"
+                }
+            ],
+            "scmIpSecurityRestrictions": [
+                {
+                    "ipAddress": "Any",
+                    "action": "Allow",
+                    "priority": 1,
+                    "name": "Allow all",
+                    "description": "Allow all access"
+                }
+            ],
+            "minTlsVersion": "1.2",
+            "scmMinTlsVersion": "1.0",
+            "ftpsState": "AllAllowed"
+        }
     },
 
     //Creating Frontdoor and additional resources
