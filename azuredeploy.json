@@ -304,7 +304,7 @@
                         "name": "frontdoorallowrule",
                         "headers": {
                             "x-azure-fdid": [
-                                ["variables('uniquewebappname2')"]
+                                ["variables('frontdoorid')"]
                             ]
                         }
                     },
