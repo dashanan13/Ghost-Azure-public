@@ -146,7 +146,7 @@
     {
       "name": "[variables('appInsightsName1')]",
       "type": "Microsoft.Insights/components",
-      "location": "[variables('hostingPlanName1')]",
+      "location": "[parameters('1st WebApp Location')]",
       "apiVersion": "2014-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('hostingPlanName1'))]"
@@ -250,7 +250,7 @@
     {
       "name": "[variables('appInsightsName2')]",
       "type": "Microsoft.Insights/components",
-      "location": "[variables('hostingPlanName2')]",
+      "location": "[parameters('2nd WebApp Location')]",
       "apiVersion": "2014-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('hostingPlanName2'))]"
@@ -339,7 +339,7 @@
         "type": "Microsoft.Network/frontdoorwebapplicationfirewallpolicies",
         "apiVersion": "2020-11-01",
         "name": "[variables('wafPolicyNameForFrontDoor')]",
-        "location": "Global",
+        "location": "[variables('frontdoorLocation')]",
         "sku": {
             "name": "Classic_AzureFrontDoor"
         },
