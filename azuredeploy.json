@@ -111,12 +111,12 @@
     "uniquewebappname2" : "[concat(parameters('Webapp Name prefix'), uniqueString(resourceGroup().id))]",
     
     "webapp1address": "[concat(variables('uniquewebappname1'), '.azurewebsites.net')]",
-    "webapp2address": "[concat(variables('uniquewebappname1'), '.azurewebsites.net')]",
+    "webapp2address": "[concat(variables('uniquewebappname2'), '.azurewebsites.net')]",
 
     "appInsightsName1": "[concat(variables('uniquewebappname1'), '-insights')]",
     "appInsightsName2": "[concat(variables('uniquewebappname2'), '-insights')]",
     "hostingPlanName1": "[concat(variables('uniquewebappname1'), '-plan')]",
-    "hostingPlanName2": "[concat(variables('uniquewebappname1'), '-plan')]",
+    "hostingPlanName2": "[concat(variables('uniquewebappname2'), '-plan')]",
 
     "frontdoorLocation": "global",
 
