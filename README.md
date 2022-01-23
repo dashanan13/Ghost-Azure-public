@@ -7,7 +7,7 @@ Most of the work has been done by [Radoslav Gatev](https://www.gatevnotes.com/in
 
 I documented my installation process, with additional steps to add Sendgrid, SSL, Azure Search, etc. on [my blog](https://blog.yannickreekmans.be/tag/ghost-tag/).
 
-## Installation methods
+## Installation method
 In any case I suggest forking my repository into your own, this to avoid changes I make to my repository to negatively impact your installation.
 
 ### One-click deploy
