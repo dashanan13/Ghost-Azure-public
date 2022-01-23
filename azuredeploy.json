@@ -30,7 +30,7 @@
         "West Europe",
         "North Europe"
       ],
-      "defaultValue": "North Europe"
+      "defaultValue": "West Europe"
     },
     "Sku": {
       "type": "string",
@@ -98,7 +98,8 @@
       "type": "string",
       "metadata": {
         "description": "The name of the frontdoor resource."
-      }
+      },
+      "defaultValue": "[concat(parameters('Webapp Name prefix'), uniqueString(resourceGroup().id))]"
     }
   },
     
@@ -127,7 +128,7 @@
     //Creating resources for and Webaapp 1
     //Creating Webapp plan
     {
-      "name": "[parameters('hostingPlanName')]",
+      "name": "[variables('hostingPlanName1')]",
       "type": "Microsoft.Web/serverfarms",
       "location": "[parameters('1st WebApp Location')]",
       "apiVersion": "2018-02-01",
@@ -231,9 +232,9 @@
     //Creating resources for and Webaapp 2
     //Creating Webapp plan
     {
-      "name": "[parameters('hostingPlanName')]",
+      "name": "[variables('hostingPlanName2')]",
       "type": "Microsoft.Web/serverfarms",
-      "location": "[parameters('1st WebApp Location')]",
+      "location": "[parameters('2nd WebApp Location')]",
       "apiVersion": "2018-02-01",
       "sku": {
         "name": "[variables('sku')]"
