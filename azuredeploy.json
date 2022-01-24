@@ -192,7 +192,7 @@
                         "name": "frontdoorallowrule",
                         "headers": {
                             "x-azure-fdid": [
-                                "variables('frontdoorid')"
+                                "[variables('frontdoorid')]"
                             ]
                         }
                     },
@@ -224,7 +224,7 @@
             "[resourceId('Microsoft.Insights/components', variables('appInsightsName1'))]"
           ],
           "properties": {
-            "url": "variables('frontdooraddress')",
+            "url": "[variables('frontdooraddress')]",
             //"url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))).hostNames[0])]",
             "mail__transport": "SMTP",
             "mail__options__service": "[parameters('Email Service')]",
@@ -297,7 +297,7 @@
                 "[resourceId('Microsoft.Insights/components', variables('appInsightsName1'))]"
               ],
               "properties": {
-                "url": "variables('frontdooraddress')",
+                "url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))).hostNames[0])]",
                 "mail__transport": "SMTP",
                 "mail__options__service": "[parameters('Email Service')]",
                 "mail__options__auth__user": "[parameters('Email Username')]",
@@ -413,37 +413,7 @@
           "properties": {
             "use32BitWorkerProcess": false,
             "httpsOnly": true,
-            "alwaysOn": true,
-            "ipSecurityRestrictions": [
-                    {
-                        "ipAddress": "AzureFrontDoor.Backend",
-                        "action": "Allow",
-                        "tag": "ServiceTag",
-                        "priority": 1,
-                        "name": "frontdoorallowrule",
-                        "headers": {
-                            "x-azure-fdid": [
-                                "[resourceId('Microsoft.Network/frontdoors', variables('frontdoorname'))]"
-                            ]
-                        }
-                    },
-                    {
-                        "ipAddress": "Any",
-                        "action": "Deny",
-                        "priority": 2147483647,
-                        "name": "Deny all", 
-                        "description": "Deny all access"
-                    }
-                ],
-                "scmIpSecurityRestrictions": [
-                    {
-                        "ipAddress": "Any",
-                        "action": "Allow",
-                        "priority": 1,
-                        "name": "Allow all",
-                        "description": "Allow all access"
-                    }
-                ]
+            "alwaysOn": true
           }
         },
         {
@@ -455,7 +425,7 @@
             "[resourceId('Microsoft.Insights/components', variables('appInsightsName2'))]"
           ],
           "properties": {
-            "url": "variables('frontdooraddress')",
+            "url": "[variables('frontdooraddress')]",
             "mail__transport": "SMTP",
             "mail__options__service": "[parameters('Email Service')]",
             "mail__options__auth__user": "[parameters('Email Username')]",
@@ -527,7 +497,7 @@
                 "[resourceId('Microsoft.Insights/components', variables('appInsightsName2'))]"
               ],
               "properties": {
-                "url": "variables('frontdooraddress')",
+                "url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))).hostNames[0])]",
                 "mail__transport": "SMTP",
                 "mail__options__service": "[parameters('Email Service')]",
                 "mail__options__auth__user": "[parameters('Email Username')]",
