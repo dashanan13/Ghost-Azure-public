@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+        //Webapp Name prefix
+    "Webapp Name prefix": {
+      "type": "string",
+      "defaultValue": "ghost-azure",
+      "metadata": {
+          "description": "The name will concatinated with unique with an ID to make 2 unique names"
+        }
+    },
+    //First Webapp location
+    "1st WebApp Location": {
+      "type": "string",
+      "allowedValues": [
+        "West Europe",
+        "North Europe"
+      ],
+      "defaultValue": "North Europe"
+    },
+    //Second Webapp location
+    "2nd WebApp Location": {
+      "type": "string",
+      "allowedValues": [
+        "West Europe",
+        "North Europe"
+      ],
+      "defaultValue": "West Europe"
+    },
+    "Sku": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "defaultValue": "Standard",
+      "metadata": {
+          "description": "This is common for both Webapps"
+        }
+    },
+    "Worker Size": {
+      "type": "string",
+      "allowedValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "defaultValue": "2",
+      "metadata": {
+          "description": "This is common for both Webapps"
+        }
+    },
+    //Ghost email configuration
+    "Email Service": {
+      "type": "string",
+      "allowedValues": [
+        "Not configured",
+        "Mailgun",
+        "Gmail",
+        "SendGrid"
+      ],
+      "defaultValue": "Not configured",
+      "metadata": {
+          "description": "Email service for Ghost engine"
+        }
+    },
+    "Email Username": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "Email Password": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "Email From Address": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    // Code repository details
+    "repoUrl": {
+      "type": "string",
+      "defaultValue": "https://github.com/dashanan13/Ghost-Azure"
+    },
+    "branch": {
+      "type": "string",
+      "defaultValue": "master"
+    }
+  },
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "name": "appServicePlan1",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "F1",
+        "capacity": 1
+      },
+      "tags": {
+        "displayName": "appServicePlan1"
+      },
+      "properties": {
+        "name": "appServicePlan1"
+      }
+    },
+
+    {
+      "name": "webApp1",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
+        "displayName": "webApp1"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan1')]"
+      ],
+      "properties": {
+        "name": "webApp1",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan1')]",
+        "httpsOnly": true
+      }
+    }
+    
+  ],
+  "outputs": {}
+}
