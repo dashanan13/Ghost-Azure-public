@@ -692,5 +692,11 @@
                 "friendlyName": "[parameters('FrontDoorName')]"
             }
         }
-  ]
+  ],
+  "outputs": {  
+    "frontdoorid": {
+          "value": "[resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName'))]",  //getting frontdoor id
+          "type": "string"
+      }
+  }
 }
