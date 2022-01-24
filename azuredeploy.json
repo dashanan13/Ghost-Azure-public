@@ -294,7 +294,8 @@
               "apiVersion": "2018-11-01",
               "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))]",
-                "[resourceId('Microsoft.Insights/components', variables('appInsightsName1'))]"
+                "[resourceId('Microsoft.Insights/components', variables('appInsightsName1'))]",
+                "[resourceId('Microsoft.Web/Sites/Slots', variables('appInsightsName1'), 'Staging')]"
               ],
               "properties": {
                 "url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('uniquewebappname1'))).hostNames[0])]",
@@ -494,7 +495,8 @@
               "apiVersion": "2018-11-01",
               "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))]",
-                "[resourceId('Microsoft.Insights/components', variables('appInsightsName2'))]"
+                "[resourceId('Microsoft.Insights/components', variables('appInsightsName2'))]",
+                "[resourceId('Microsoft.Web/Sites/Slots', variables('appInsightsName2'), 'Staging')]"
               ],
               "properties": {
                 "url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('uniquewebappname2'))).hostNames[0])]",
