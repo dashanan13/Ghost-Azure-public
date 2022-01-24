@@ -269,7 +269,7 @@
             "[resourceId('Microsoft.Web/sites/config', variables('uniquewebappname1'), 'appsettings')]"
           ],
         "name": "[concat(variables('uniquewebappname1'), '/staging')]",
-        "location": "[parameters('2nd WebApp Location')]",
+        "location": "[parameters('1st WebApp Location')]",
         "kind": "app",
         "properties": {
             "enabled": true,
@@ -317,7 +317,7 @@
                 "type": "Microsoft.Web/sites/slots/config",
                 "apiVersion": "2021-02-01",
                 "name": "[concat(variables('uniquewebappname1'), '/staging/web')]",
-                "location": "[parameters('2nd WebApp Location')]",
+                "location": "[parameters('1st WebApp Location')]",
                 "dependsOn": [
                     "[resourceId('Microsoft.Web/sites/slots', variables('uniquewebappname1'), 'staging')]",
                     "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName1'))]",
