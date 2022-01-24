@@ -305,7 +305,7 @@
                         "name": "frontdoorallowrule",
                         "headers": {
                             "x-azure-fdid": [
-                                ["variables('frontdoorid')"]
+                                "variables('frontdoorid')"
                             ]
                         }
                     },
@@ -696,6 +696,10 @@
   "outputs": {  
     "frontdoorid": {
           "value": "[resourceId('Microsoft.Network/frontdoors', parameters('FrontDoorName'))]",  //getting frontdoor id
+          "type": "string"
+      },
+    "frontdooridvariable": {
+          "value": "variables('frontdoorid')",
           "type": "string"
       }
       
