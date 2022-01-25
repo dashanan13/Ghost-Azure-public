@@ -37,6 +37,7 @@ This installation contains two sections
 Note: The website only starts to warmup only when it is accessed and it takes a few minutes to warm up.
 
 
+### Sample Architecture
 ![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/environment-diagram.png?raw=true)
 
 
