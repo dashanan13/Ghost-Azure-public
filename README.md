@@ -36,6 +36,10 @@ This installation contains two sections
 
 Note: The website only starts to warmup only when it is accessed and it takes a few minutes to warm up.
 
+
+![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/environment-diagram.png?raw=true)
+
+
 ### One-click deploy
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure%2Fmaster%2Fazuredeploy.json)
 
