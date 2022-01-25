@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+        //Webapp Name prefix
+    "WebappName": {
+      "type": "string"
+    },
+    "Frontdoorid": {
+      "type": "string"
+    }
+  },
+  "functions": [],
+  "variables": {},
+
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2021-02-01",
+      "name": "[concat(parameters('WebappName'), '/web')]",
+      "properties": {
+        "ipSecurityRestrictions": [
+              {
+                  "ipAddress": "AzureFrontDoor.Backend",
+                  "action": "Allow",
+                  "tag": "ServiceTag",
+                  "priority": 1,
+                  "name": "frontdoorallowrule",
+                  "headers": {
+                      "x-azure-fdid": [
+                          "[parameters('Frontdoorid')]"
+                      ]
+                  }
+              },
+              {
+                  "ipAddress": "Any",
+                  "action": "Deny",
+                  "priority": 2147483647,
+                  "name": "Deny all", 
+                  "description": "Deny all access"
+              }
+          ],
+          "scmIpSecurityRestrictions": [
+              {
+                  "ipAddress": "Any",
+                  "action": "Allow",
+                  "priority": 1,
+                  "name": "Allow all",
+                  "description": "Allow all access"
+              }
+          ]
+      }
+    }
+  ],
+  "outputs": {}
+}
