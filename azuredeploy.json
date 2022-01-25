@@ -369,7 +369,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "frontdoor",
+      "name": "ipsecwebapp1",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -383,11 +383,11 @@
       }
     },
 
-    //Update webapp 1
+    //Update webapp 2
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "frontdoor",
+      "name": "ipsecwebapp2",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
