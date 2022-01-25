@@ -297,7 +297,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "webappslot1",
+      "name": "webappslot2",
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'webappplan2')]",
         "[resourceId('Microsoft.Resources/deployments', 'webappinsight2')]",
