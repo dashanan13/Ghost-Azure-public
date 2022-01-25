@@ -345,7 +345,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "frontdoorwaf",
+      "name": "frontdoor",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -363,15 +363,10 @@
     }
 
   ],
-  "outputs": {  
+  "outputs": {
     "frontdoorid": {
-          "value": "[resourceId('Microsoft.Network/frontdoors', variables('frontdoorname'))]",  //getting frontdoor id
-          "type": "string"
-      },
-    "frontdooridvariable": {
-          "value": "variables('frontdoorid')",
-          "type": "string"
-      }
-      
+      "type": "string",
+      "value": "[reference('frontdoor').outputs.frontdoorid.value]"
+    }      
   }
 }
