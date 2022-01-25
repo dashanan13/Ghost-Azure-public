@@ -108,6 +108,7 @@
     
     "appInsightsName1": "[concat(variables('uniquewebappname1'), '-insights')]",
     "appInsightsName2": "[concat(variables('uniquewebappname2'), '-insights')]",
+
     "hostingPlanName1": "[concat(variables('uniquewebappname1'), '-plan')]",
     "hostingPlanName2": "[concat(variables('uniquewebappname2'), '-plan')]",
 
@@ -117,11 +118,12 @@
 
     "wafPolicyNameForFrontDoor": "wafPolicyForFrontDoor",
 
+    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
     "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webapp.json",
-    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
     "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webslots.json",
     "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/appinsight.json",
-    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
+    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
+    "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappipsec.json",
     "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json"
   },
 
@@ -358,6 +360,43 @@
           "Webapp1Address": {"value": "[variables('webapp1address')]"},
           "Webapp2Address": {"value": "[variables('webapp2address')]"},
           "WAFName": {"value": "[variables('wafPolicyNameForFrontDoor')]"}
+        }
+      }
+    },
+
+    //Update webapps with IP restriction that binds it to frontdoor
+    //Update webapp 1
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "frontdoor",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('linkwebappipsec')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "WebappName": {"value": "[variables('uniquewebappname1')]"},
+          "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}   //This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
+        }
+      }
+    },
+
+    //Update webapp 1
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "frontdoor",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('linkwebappipsec')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "WebappName": {"value": "[variables('uniquewebappname2')]"},
+          "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}
         }
       }
     }
