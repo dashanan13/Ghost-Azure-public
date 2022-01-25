@@ -85,7 +85,7 @@
     // Code repository details
     "repoUrl": {
       "type": "string",
-      "defaultValue": "https://github.com/dashanan13/Ghost-Azure"
+      "defaultValue": "https://github.com/dashanan13/Ghost-Azure-public"
     },
     "branch": {
       "type": "string",
