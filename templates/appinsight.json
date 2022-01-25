@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    //Webapp Name prefix
+    "WebappName": {
+      "type": "string"
+    },
+    "AppInsightsName": {
+      "type": "string"
+    },
+    //First Webapp location
+    "Location": {
+      "type": "string"
+    }
+
+  },
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2014-04-01",
+      "location": "[parameters('Location')]",
+      "name": "[parameters('AppInsightsName')]",
+      "properties": {
+        "Application_Type": "Node.JS",
+        "applicationId": "[resourceId('Microsoft.Web/sites', parameters('WebappName'))]"
+      }
+    }
+  ],
+  "outputs": {}
+}

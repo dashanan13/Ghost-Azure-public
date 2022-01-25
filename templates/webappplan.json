@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    //Webapp Name prefix
+    "WebappPlanName": {
+      "type": "string"
+    },
+    //First Webapp location
+    "Location": {
+      "type": "string"
+    },
+    "Sku": {
+      "type": "string"
+    }
+  },
+  "functions": [],
+  "variables": {},
+
+  "resources": [
+    {
+      "name": "[parameters('WebappPlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-12-01",
+      "location": "[parameters('Location')]",
+      "sku": {
+        "name": "[parameters('Sku')]",
+        "capacity": 1
+      },
+      "tags": {
+        "displayName": "[parameters('WebappPlanName')]"
+      },
+      "properties": {
+        "name": "[parameters('WebappPlanName')]"
+      }
+    }
+  ],
+  "outputs": {}
+}

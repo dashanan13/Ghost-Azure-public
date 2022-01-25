@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Name": {
+      "type": "string"
+    },
+    //First Webapp location
+    "Location": {
+      "type": "string"
+    }
+  },
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Network/FrontDoorWebApplicationFirewallPolicies",
+      "apiVersion": "2020-11-01",
+      "name": "[parameters('Name')]",
+      "location": "[parameters('Location')]",
+      "sku": {
+        "name": "Classic_AzureFrontDoor"
+      },
+      "properties": {
+        "policySettings": {
+          "enabledState": "Enabled",
+          "mode": "Prevention",
+          "customBlockResponseStatusCode": 403,
+          "requestBodyCheck": "Disabled"
+        },
+        "managedRules": {
+          "managedRuleSets": [
+            {
+              "ruleSetType": "DefaultRuleSet",
+              "ruleGroupOverrides": [],
+              "ruleSetVersion": "1.0",
+              "exclusions": []
+             }
+          ]
+        },
+        "customRules": {
+          "rules": []
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
