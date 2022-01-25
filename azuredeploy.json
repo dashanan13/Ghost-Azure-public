@@ -378,7 +378,7 @@
         },
         "parameters": {
           "WebappName": {"value": "[variables('uniquewebappname1')]"},
-          "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}   //This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
+          "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}   // This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
         }
       }
     },
