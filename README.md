@@ -21,16 +21,16 @@ This installation contains two sections
 2.  The other part is a pipeline to keep the Webapps updated with latest code via a pipeline file azure-pipelines.yml
     This is a Azure pipelines file that can be used with Azure Devops.
     Azure devops should have a connection to the subscription being deployed, pipeline will needs the following variables
-    - AzureSubscription:  Name of the connection that was established between Azure devops and azure subscription
-    - RESOURCEGROUP:  RG that you want ot deploy to
-    - WEBAPP1:    Name of first Webapp
-    - UrlProduction1: URL of first Webapp
-    - UrlStaging1:    Name of first Webapp slot named "staging"
-    - WEBAPP2:    Name of Second Webapp
-    - UrlProduction2: URL of first Webapp
-    - UrlStaging2:    Name of first Webapp slot named "staging"
-    - WEBJOBNAME: 'redeploy'
-    - SlotNameStaging:    'staging'
+    - **AzureSubscription**: Name of the connection that was established between Azure devops and azure subscription
+    - **RESOURCEGROUP**: RG that you want ot deploy to
+    - **WEBAPP1**:   Name of first Webapp
+    - **UrlProduction1: URL of first Webapp
+    - **UrlStaging1**:   Name of first Webapp slot named "staging"
+    - **WEBAPP2**:   Name of Second Webapp
+    - **UrlProduction2: URL of first Webapp
+    - **UrlStaging2**:   Name of first Webapp slot named "staging"
+    - **WEBJOBNAME: 'redeploy'
+    - **SlotNameStaging**:   'staging'
 
 Note: The website starts to warmup only when it is accessed and it takes a few minutes to warm up.
 
