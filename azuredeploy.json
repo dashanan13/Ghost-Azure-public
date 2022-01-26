@@ -282,7 +282,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
+          //"WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
+          "WebappName": {"value": "[variables('uniquewebappname1')]"},  // changing it back to get success in deployment
           "serverFarmId": {"value": "[reference('webappplan1').outputs.serverFarmId.value]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('1st WebApp Location')]"},
@@ -312,7 +313,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[reference('webapp2').outputs.AppInsightsInstrumentationKey.value]"},
+          "WebappName": {"value": "[variables('uniquewebappname2')]"},
           "serverFarmId": {"value": "[reference('webappplan2').outputs.serverFarmId.value]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('2nd WebApp Location')]"},
@@ -381,7 +382,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
+          "WebappName": {"value": "[variables('uniquewebappname1')]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}   // This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
         }
       }
@@ -403,7 +404,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
+          "WebappName": {"value": "[variables('uniquewebappname2')]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}
         }
       }
