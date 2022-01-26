@@ -9,9 +9,6 @@
     "WebappPlanName": {
       "type": "string"
     },
-    "AppInsightsName": {
-      "type": "string"
-    },
     "Name": {
       "type": "string"
     },
@@ -30,6 +27,9 @@
       "type": "string"
     },
     "Email From Address": {
+      "type": "string"
+    },
+    "AppInsightsInstrumentationKey": {
       "type": "string"
     }
 
@@ -75,7 +75,7 @@
             "mail__from": "[parameters('Email From Address')]",
             "WEBSITE_NODE_DEFAULT_VERSION": "~10",
             "NODE_ENV": "development",
-            "APPINSIGHTS_INSTRUMENTATION_KEY": "[reference(concat('Microsoft.Insights/components/', parameters('AppInsightsName'))).InstrumentationKey]"
+            "APPINSIGHTS_INSTRUMENTATION_KEY": "[parameters('AppInsightsInstrumentationKey')]"
           }
         }
       ]

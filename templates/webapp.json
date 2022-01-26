@@ -9,9 +9,6 @@
     "WebappPlanName": {
       "type": "string"
     },
-    "AppInsightsName": {
-      "type": "string"
-    },
     //First Webapp location
     "Location": {
       "type": "string"
@@ -34,6 +31,9 @@
       "type": "string"
     },
     "Branch": {
+      "type": "string"
+    },
+    "AppInsightsInstrumentationKey": {
       "type": "string"
     }
   },
@@ -82,7 +82,7 @@
             "mail__from": "[parameters('Email From Address')]",
             "WEBSITE_NODE_DEFAULT_VERSION": "~10",
             "NODE_ENV": "production",
-            "APPINSIGHTS_INSTRUMENTATION_KEY": "[reference(concat('Microsoft.Insights/components/', parameters('AppInsightsName'))).InstrumentationKey]"
+            "APPINSIGHTS_INSTRUMENTATION_KEY": "[parameters('AppInsightsInstrumentationKey')]"
           }
         },
 

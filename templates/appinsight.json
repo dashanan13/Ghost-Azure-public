@@ -29,5 +29,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "AppInsightsInstrumentationKey": {
+          "type": "string",
+          "value": "[reference(resourceId('Microsoft.Insights/components', parameters('AppInsightsName'))).InstrumentationKey]"
+      }
+  }
 }
