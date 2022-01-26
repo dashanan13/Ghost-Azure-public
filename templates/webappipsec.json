@@ -33,6 +33,13 @@
                   }
               },
               {
+                  "ipAddress": "AzureCloud",
+                  "action": "Allow",
+                  "tag": "ServiceTag",
+                  "priority": 2,
+                  "name": "accesscloud"
+              },
+              {
                   "ipAddress": "Any",
                   "action": "Deny",
                   "priority": 2147483647,
