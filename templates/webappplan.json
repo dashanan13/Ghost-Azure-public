@@ -35,5 +35,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "serverFarmId": {
+          "type": "string",
+          "value": "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]"
+      }
+  }
 }

@@ -6,9 +6,6 @@
     "WebappName": {
       "type": "string"
     },
-    "WebappPlanName": {
-      "type": "string"
-    },
     //First Webapp location
     "Location": {
       "type": "string"
@@ -35,6 +32,9 @@
     },
     "AppInsightsInstrumentationKey": {
       "type": "string"
+    },
+    "serverFarmId": {
+      "type": "string"
     }
   },
   "functions": [],
@@ -48,7 +48,7 @@
       "location": "[parameters('Location')]",
       "properties": {
         "name": "[parameters('WebappName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]"
+        "serverFarmId": "[parameters('serverFarmId')]"
       },
       "resources": [
         {
@@ -56,8 +56,7 @@
           "apiVersion": "2021-02-01",
           "name": "[concat(parameters('WebappName'), '/web')]",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/sites', parameters('WebappName'))]",
-            "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]"
+            "[resourceId('Microsoft.Web/sites', parameters('WebappName'))]"
           ],
           "properties": {
             "use32BitWorkerProcess": true,

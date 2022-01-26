@@ -6,9 +6,6 @@
     "WebappName": {
       "type": "string"
     },
-    "WebappPlanName": {
-      "type": "string"
-    },
     "Name": {
       "type": "string"
     },
@@ -31,6 +28,9 @@
     },
     "AppInsightsInstrumentationKey": {
       "type": "string"
+    },
+    "serverFarmId": {
+      "type": "string"
     }
 
   },
@@ -43,7 +43,7 @@
       "name": "[concat(parameters('WebappName'), '/', parameters('Name'))]",
       "location": "[parameters('Location')]",
       "properties": {
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]"
+        "serverFarmId": "[parameters('serverFarmId')]"
       },
       "resources": [
         {

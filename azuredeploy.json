@@ -222,7 +222,7 @@
         },
         "parameters": {
           "WebappName": {"value": "[variables('uniquewebappname1')]"},
-          "WebappPlanName": {"value": "[variables('hostingPlanName1')]"},
+          "serverFarmId": {"value": "[reference('webappplan1').outputs.serverFarmId.value]"},
           "Location": {"value": "[parameters('1st WebApp Location')]"},
           "Email Service": {"value": "[parameters('Email Service')]"},
           "Email Username": {"value": "[parameters('Email Username')]"},
@@ -252,7 +252,7 @@
         },
         "parameters": {
           "WebappName": {"value": "[variables('uniquewebappname2')]"},
-          "WebappPlanName": {"value": "[variables('hostingPlanName2')]"},
+          "serverFarmId": {"value": "[reference('webappplan2').outputs.serverFarmId.value]"},
           "Location": {"value": "[parameters('2nd WebApp Location')]"},
           "Email Service": {"value": "[parameters('Email Service')]"},
           "Email Username": {"value": "[parameters('Email Username')]"},
@@ -283,7 +283,7 @@
         },
         "parameters": {
           "WebappName": {"value": "[variables('uniquewebappname1')]"},
-          "WebappPlanName": {"value": "[variables('hostingPlanName1')]"},
+          "serverFarmId": {"value": "[reference('webappplan1').outputs.serverFarmId.value]"},
           "AppInsightsName": {"value": "[variables('appInsightsName1')]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('1st WebApp Location')]"},
@@ -314,7 +314,7 @@
         },
         "parameters": {
           "WebappName": {"value": "[variables('uniquewebappname2')]"},
-          "WebappPlanName": {"value": "[variables('hostingPlanName2')]"},
+          "serverFarmId": {"value": "[reference('webappplan2').outputs.serverFarmId.value]"},
           "AppInsightsName": {"value": "[variables('appInsightsName2')]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('2nd WebApp Location')]"},
