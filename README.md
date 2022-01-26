@@ -24,12 +24,12 @@ This installation contains two sections
     - **AzureSubscription**: Name of the connection that was established between Azure devops and azure subscription
     - **RESOURCEGROUP**: RG that you want ot deploy to
     - **WEBAPP1**:   Name of first Webapp
-    - **UrlProduction1: URL of first Webapp
+    - **UrlProduction1**: URL of first Webapp
     - **UrlStaging1**:   Name of first Webapp slot named "staging"
     - **WEBAPP2**:   Name of Second Webapp
-    - **UrlProduction2: URL of first Webapp
+    - **UrlProduction2**: URL of first Webapp
     - **UrlStaging2**:   Name of first Webapp slot named "staging"
-    - **WEBJOBNAME: 'redeploy'
+    - **WEBJOBNAME**: 'redeploy'
     - **SlotNameStaging**:   'staging'
 
 Note: The website starts to warmup only when it is accessed and it takes a few minutes to warm up.
