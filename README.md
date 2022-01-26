@@ -5,6 +5,12 @@
 Straight out of the box, the current 1.x and 2.x versions of Ghost aren't compatible with the Azure App Service. Ghost-Azure resolves this by providing a production-ready template which can be hosted directly on Azure App Service. In the background, an Azure Function ([Ghost-Release-Uploader](https://github.com/YannickRe/Ghost-Release-Uploader)) makes sure that this repository stays up-to-date with the latest releases of Ghost.
 This template is a proof of concept that builds on forked from YannickRe/Ghost-Azure (node code adapted for a single webapp), and tries to make it into a load balanced regional outage tollerent architecture.
 
+### Sample Architecture
+![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/environment-diagram.png?raw=true)
+
+### One-click deploy
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Fmaster%2Fazuredeploy.json)
+
 ## Installation method
 In any case I suggest forking my repository into your own, this to avoid changes I make to my repository to negatively impact your installation.
 
@@ -14,28 +20,19 @@ This installation contains two sections
 
 2.  The other part is a pipeline to keep the Webapps updated with latest code via a pipeline file azure-pipelines.yml
     This is a Azure pipelines file that can be used with Azure Devops.
-    Azure devopsshould have a connection to the subscription being deployed, pipeline will needs the following variables
-    AzureSubscription:  Name of the connection that was established between Azure devops and azure subscription
-    RESOURCEGROUP:  RG that you want ot deploy to
-    WEBAPP1:    Name of first Webapp
-    UrlProduction1: URL of first Webapp
-    UrlStaging1:    Name of first Webapp slot named "staging"
-    WEBAPP2:    Name of Second Webapp
-    UrlProduction2: URL of first Webapp
-    UrlStaging2:    Name of first Webapp slot named "staging"
-    WEBJOBNAME: 'redeploy'
-    SlotNameStaging:    'staging'
+    Azure devops should have a connection to the subscription being deployed, pipeline will needs the following variables
+    a. AzureSubscription:  Name of the connection that was established between Azure devops and azure subscription
+    b. RESOURCEGROUP:  RG that you want ot deploy to
+    c. WEBAPP1:    Name of first Webapp
+    d. UrlProduction1: URL of first Webapp
+    e. UrlStaging1:    Name of first Webapp slot named "staging"
+    f. WEBAPP2:    Name of Second Webapp
+    g. UrlProduction2: URL of first Webapp
+    h. UrlStaging2:    Name of first Webapp slot named "staging"
+    i. WEBJOBNAME: 'redeploy'
+    j. SlotNameStaging:    'staging'
 
-Note: The website only starts to warmup only when it is accessed and it takes a few minutes to warm up.
-
-
-### Sample Architecture
-![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/environment-diagram.png?raw=true)
-
-
-### One-click deploy
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Fmaster%2Fazuredeploy.json)
-
+Note: The website starts to warmup only when it is accessed and it takes a few minutes to warm up.
 
 ### Azure App Service Deployment Center
 More info on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment#deploy-continuously-from-github)
