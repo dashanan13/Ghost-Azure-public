@@ -107,8 +107,8 @@
   ],
   "outputs": {
     "WebappName": {
-          "type": "object",  // changing it to avoid error and waiting for ms to get me documrnttaion of the reference of properties
-          "value": "[reference(resourceId('Microsoft.Web/sites', parameters('WebappName')))]"
+          "type": "string",  // changing it to avoid error and waiting for ms to get me documrnttaion of the reference of properties
+          "value": "[reference(resourceId('Microsoft.Web/sites', parameters('WebappName'))).Name]"
       }
   }
 }
