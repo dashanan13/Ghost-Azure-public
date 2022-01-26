@@ -15,7 +15,23 @@
     }
   },
   "functions": [],
-  "variables": {},
+  "variables": {
+    "targetResourceId": "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]",
+    "settingName": "[concat(parameters('WebappPlanName'), 'autoscalesettings')]",
+    "minimumCapacity": 2,
+    "maximumCapacity": 5,
+    "defaultCapacity": 5,
+    "metricName": "CpuPercentage",
+    //The metric upper threshold.  If the metric value is above this threshold then autoscale engine will initiate scale out action
+    "metricThresholdToScaleOut": 60,
+    //The metric lower threshold.  If the metric value is below this threshold then autoscale engine will initiate scale in action
+    "metricThresholdToScaleIn": 20,
+    //The percentage to increase the instance count when autoscale engine is initiating scale out action
+    "changePercentScaleOut": 20,
+    //The percentage to decrease the instance count when autoscale engine is initiating scale in action
+    "changePercentScaleIn": 10,
+    "autoscaleEnabled": true
+  },
 
   "resources": [
     {
@@ -32,6 +48,67 @@
       },
       "properties": {
         "name": "[parameters('WebappPlanName')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/autoscalesettings",
+      "name": "[variables('settingName')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('WebappPlanName'))]"
+      ],
+      "apiVersion": "2014-04-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "profiles": [
+          {
+            "name": "DefaultAutoscaleProfile",
+            "capacity": {
+              "minimum": "[variables('minimumCapacity')]",
+              "maximum": "[variables('maximumCapacity')]",
+              "default": "[variables('defaultCapacity')]"
+            },
+            "rules": [
+              {
+                "metricTrigger": {
+                  "metricName": "[variables('metricName')]",
+                  "metricResourceUri": "[variables('targetResourceId')]",
+                  "timeGrain": "PT5M",
+                  "statistic": "Average",
+                  "timeWindow": "PT10M",
+                  "timeAggregation": "Average",
+                  "operator": "GreaterThan",
+                  "threshold": "[variables('metricThresholdToScaleOut')]"
+                },
+                "scaleAction": {
+                  "direction": "Increase",
+                  "type": "PercentChangeCount",
+                  "value": "[variables('changePercentScaleOut')]",
+                  "cooldown": "PT10M"
+                }
+              },
+              {
+                "metricTrigger": {
+                  "metricName": "[variables('metricName')]",
+                  "metricResourceUri": "[variables('targetResourceId')]",
+                  "timeGrain": "PT5M",
+                  "statistic": "Average",
+                  "timeWindow": "PT10M",
+                  "timeAggregation": "Average",
+                  "operator": "LessThan",
+                  "threshold": "[variables('metricThresholdToScaleIn')]"
+                },
+                "scaleAction": {
+                  "direction": "Decrease",
+                  "type": "PercentChangeCount",
+                  "value": "[variables('changePercentScaleIn')]",
+                  "cooldown": "PT10M"
+                }
+              }
+            ]
+          }
+        ],
+        "enabled": "[variables('autoscaleEnabled')]",
+        "targetResourceUri": "[variables('targetResourceId')]"
       }
     }
   ],
