@@ -282,9 +282,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[variables('uniquewebappname1')]"},
+          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
           "serverFarmId": {"value": "[reference('webappplan1').outputs.serverFarmId.value]"},
-          "AppInsightsName": {"value": "[variables('appInsightsName1')]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('1st WebApp Location')]"},
           "Email Service": {"value": "[parameters('Email Service')]"},
@@ -313,9 +312,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[variables('uniquewebappname2')]"},
+          "WebappName": {"value": "[reference('webapp2').outputs.AppInsightsInstrumentationKey.value]"},
           "serverFarmId": {"value": "[reference('webappplan2').outputs.serverFarmId.value]"},
-          "AppInsightsName": {"value": "[variables('appInsightsName2')]"},
           "Name": {"value": "[variables('slotname')]"},
           "Location": {"value": "[parameters('2nd WebApp Location')]"},
           "Email Service": {"value": "[parameters('Email Service')]"},
@@ -372,6 +370,10 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "name": "ipsecwebapp1",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'webapp1')]",
+        "[resourceId('Microsoft.Resources/deployments', 'webappplan1')]"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -379,7 +381,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[variables('uniquewebappname1')]"},
+          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}   // This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
         }
       }
@@ -390,6 +392,10 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "name": "ipsecwebapp2",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'webapp2')]",
+        "[resourceId('Microsoft.Resources/deployments', 'webappplan2')]"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -397,7 +403,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "WebappName": {"value": "[variables('uniquewebappname2')]"},
+          "WebappName": {"value": "[reference('webapp1').outputs.AppInsightsInstrumentationKey.value]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"}
         }
       }
