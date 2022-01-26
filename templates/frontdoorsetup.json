@@ -175,7 +175,7 @@
   "outputs": {
     "frontdoorid": {
       "type": "string",
-      "value": "[resourceId('Microsoft.Network/frontdoors', parameters('Name'))]"
+      "value": "[reference(resourceId('Microsoft.Network/frontDoors', parameters('Name'))).FrontDoorId]"
     }
   }
 }
