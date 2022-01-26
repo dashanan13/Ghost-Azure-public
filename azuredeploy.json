@@ -349,6 +349,9 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "name": "frontdoor",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'frontdoorwaf')]"
+      ],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
