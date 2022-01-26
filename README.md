@@ -27,12 +27,6 @@ This installation contains two sections
     UrlStaging2:    Name of first Webapp slot named "staging"
     WEBJOBNAME: 'redeploy'
     SlotNameStaging:    'staging'
-    
-
-## Current issues
-1.  ARM template is unable to restrict the call to the individual webapps from only Frontdoor due to problems accessing FrontDoor ID as a reference
-2.  ARM template source code deployment to mostly 2nd webapp ends with a message 'conflict', this is solved mostly if resources are deleted and reployed
-3.  Azure pipeline deployment of the modified repository to the staging leads to a failure somtimes as the website does not comeup and leads to warmup timeout (looks like a problem with initial repository too)
 
 Note: The website only starts to warmup only when it is accessed and it takes a few minutes to warm up.
 
