@@ -3,9 +3,7 @@
 # Ghost-Azure 
 ## Why Ghost-Azure?
 Straight out of the box, the current 1.x and 2.x versions of Ghost aren't compatible with the Azure App Service. Ghost-Azure resolves this by providing a production-ready template which can be hosted directly on Azure App Service. In the background, an Azure Function ([Ghost-Release-Uploader](https://github.com/YannickRe/Ghost-Release-Uploader)) makes sure that this repository stays up-to-date with the latest releases of Ghost.
-This template is a prooof of concept that builds on forked from YannickRe/Ghost-Azure (which was a single deployed webapp), and tries to make it into a load balanced regional outage tollerent architecture.
-Most of the work has been done by [Radoslav Gatev](https://www.gatevnotes.com/introducing-ghost-2-on-azure-web-app-service/) who created the deployment template and the release uploader. Due to unknown reasons his repository wasn't being kept up-to-date with the latest releases, so we forked it and ran our own processes.
-https://github.com/YannickRe/Ghost-Azure was build on the repository from https://github.com/RadoslavGatev/Ghost-Azure and this repository build on YannickRe/Ghost-Azure.
+This template is a proof of concept that builds on forked from YannickRe/Ghost-Azure (node code adapted for a single webapp), and tries to make it into a load balanced regional outage tollerent architecture.
 
 ## Installation method
 In any case I suggest forking my repository into your own, this to avoid changes I make to my repository to negatively impact your installation.
