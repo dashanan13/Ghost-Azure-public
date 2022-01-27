@@ -118,13 +118,17 @@
 
     "wafPolicyNameForFrontDoor": "wafPolicyForFrontDoor",
 
+    "storagename": "webappbackup",
+
     "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
     "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webapp.json",
+    "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/network.json",
     "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webslots.json",
     "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/appinsight.json",
     "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
     "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappipsec.json",
-    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json"
+    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json",
+    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/storageaccount.json"
   },
 
   "resources": [
@@ -137,13 +141,8 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('linkwebappplan')]",
+          "uri": "[variables('linknetwork')]",
           "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "WebappPlanName": {"value": "[variables('hostingPlanName1')]"},
-          "Location": {"value": "[parameters('1st WebApp Location')]"},
-          "Sku": {"value": "[variables('sku')]"}
         }
       }
     },
@@ -387,6 +386,30 @@
       }
     },
 
+    //Storage account for backup
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "storageaccount",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'networksetup')]",
+        "[resourceId('Microsoft.Resources/deployments', 'webapp1')]",
+        "[resourceId('Microsoft.Resources/deployments', 'webapp2')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('linkstorageaccount')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "Name": {"value": "[variables('storagename')]"},
+          "virtualNetwork": {"value": "[reference('networksetup').outputs.NetworkrefID.value]"},
+          "webappoutboundiplist": {"value": "[concat(reference('webapp1').outputs.frontdoorid.value, ',', reference('webapp2').outputs.frontdoorid.value)]"}
+        }
+      }
+    },
+
     //Update webapps with IP restriction that binds it to frontdoor
     //Update webapp 1
     {
@@ -437,6 +460,19 @@
     "frontdoorid": {
       "type": "string",
       "value": "[reference('frontdoor').outputs.frontdoorid.value]"
-    }      
+    },
+    "webapp1iplist": {
+      "type": "string",
+      "value": "[reference('webapp1').outputs.frontdoorid.value]"
+    },
+    "webapp2iplist": {
+      "type": "string",
+      "value": "[reference('webapp2').outputs.frontdoorid.value]"
+    },
+    "networkid": {
+      "type": "string",
+      "value": "[reference('networksetup').outputs.frontdoorid.value]"
+    }
+
   }
 }
