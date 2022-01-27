@@ -73,10 +73,10 @@
                     ], */
                     "copy": [
                         {
-                            "name": "iprules",
+                            "name": "ipRules",
                             "count": "[length(variables('outboundips'))]",
                             "input": {
-                                "value": "[variables('outboundips')[copyIndex('outboundips')]]",
+                                "value": "[variables('outboundips')[copyIndex('ipRules')]]",
                                 "action": "Allow"
                             }
                         }
