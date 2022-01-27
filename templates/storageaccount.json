@@ -61,7 +61,16 @@
                             "state": "Succeeded"
                         }
                     ],
-
+                    "ipRules": [
+                       {
+                            "value": "[variables('outboundips')[copyIndex('outboundips')]]",
+                            "action": "Allow",
+                            "copy": {
+                                "name": "ipRules",
+                                "count": "[length(variables('outboundips'))]"
+                            }
+                        } 
+                    ],
                     "defaultAction": "Deny"
                 },
                 "supportsHttpsTrafficOnly": true,
@@ -112,56 +121,6 @@
                     "days": 7
                 },
                 "isVersioningEnabled": false
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/fileServices",
-            "apiVersion": "2021-06-01",
-            "name": "[concat(parameters('name'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('name'))]"
-            ],
-            "sku": {
-                "name": "Standard_RAGRS",
-                "tier": "Standard"
-            },
-            "properties": {
-                "protocolSettings": {
-                    "smb": {}
-                },
-                "cors": {
-                    "corsRules": []
-                },
-                "shareDeleteRetentionPolicy": {
-                    "enabled": true,
-                    "days": 7
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/queueServices",
-            "apiVersion": "2021-06-01",
-            "name": "[concat(parameters('name'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('name'))]"
-            ],
-            "properties": {
-                "cors": {
-                    "corsRules": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/tableServices",
-            "apiVersion": "2021-06-01",
-            "name": "[concat(parameters('name'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('name'))]"
-            ],
-            "properties": {
-                "cors": {
-                    "corsRules": []
-                }
             }
         },
         {
