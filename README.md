@@ -22,7 +22,7 @@ This installation contains two sections
     This is a Azure pipelines file that can be used with Azure Devops.
     Azure devops should have a connection to the subscription being deployed, pipeline will needs the following variables
     - **AzureSubscription**: Name of the connection that was established between Azure devops and azure subscription [How?](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)
-    - **RESOURCEGROUP**: RG that you want ot deploy to
+    - **RESOURCEGROUP**: Target resource group name
     - **WEBAPP1**:   Name of first Webapp
     - **UrlProduction1**: URL of first Webapp
     - **UrlStaging1**:   Name of first Webapp slot named "staging"
