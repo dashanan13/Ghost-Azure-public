@@ -8,7 +8,8 @@ This template is a proof of concept that builds on forked from YannickRe/Ghost-A
 
 ### Sample Architecture
 ![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/architecture.png?raw=true)
-The solution consists of the following parts:
+
+**The solution consists of the following parts:**
 1. Azure Webapps hosted in 2 different regions, such that if one goes down the other one can remain active.
 2. Azure Frontdoor hosted routing traffic to each webapp and load balancing, this will be handy if a web app goes down (regional outage?).
 3. Azure Storage account hosted and configured as backup location for webapps in seperate containers periodically.
