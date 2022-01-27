@@ -17,16 +17,16 @@ This template is a proof of concept that builds on forked from YannickRe/Ghost-A
 5. Azure Network to restrict access to Storage account and keep the backup access limited.
 
 **The architecture is**
-1. Secure: As the access is streamlined , 
+1. **Secure:** As the access is streamlined , 
 - Webapps can only be accessed via Fontdoor and not individually
 - WAF policies monitor traffic and keep acting on the threats classified under OWASP.
 - Backup can only be access by a device deployed ot Virtual network in Azure Resource group.
 
-2. Scalable: 
+2. **Scalable:** 
 - It is possible to add more such regional Webapps to improve latency in other regions for dynamic content
 - Each Webapp is deployed with metric based autoscalling, such that if load increases the infra responds by providing more capability.
 
-3. Developer friendly:
+3. **Developer friendly:**
 - Each webapp provides Slots that can and have been configured to various branches of the repository making it easier to develop and test for different environments.
 
 ## Installation method
@@ -37,6 +37,7 @@ This installation contains two sections
     It will deploy 2 sets of (Azure webapp, application insight for the webapp and a plan for the webapp) and both those webapps will be fronted by Azure Front door and a WAF
 
 2.  The other part is a pipeline to keep the Webapps updated with latest code via a pipeline file azure-pipelines.yml (**Work in progress**).
+
     This is a Azure pipelines file that can be used with Azure Devops.
     Azure devops should have a connection to the subscription being deployed, pipeline will needs the following variables
     - **AzureSubscription**: Name of the connection that was established between Azure devops and azure subscription [How?](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)
