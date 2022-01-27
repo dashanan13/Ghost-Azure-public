@@ -61,18 +61,6 @@
                             "state": "Succeeded"
                         }
                     ],
-                    "copy": [
-                        {
-                            "name": "outboundips",
-                            "count": "[length(variables('outboundips'))]",
-                            "ipRules": [
-                                {
-                                    "value": "85.165.194.25",
-                                    "action": "Allow"
-                                }
-                            ]
-                        }
-                    ],
                     "defaultAction": "Deny"
                 },
                 "supportsHttpsTrafficOnly": true,
