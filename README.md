@@ -8,7 +8,7 @@ This template is a proof of concept that builds on forked from YannickRe/Ghost-A
 ### Sample Architecture
 ![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/environment-diagram.png?raw=true)
 
-### One-click deploy
+### One-click deploy (testing)
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Ftesting%2Fazuredeploy.json)
 
 ## Installation method
