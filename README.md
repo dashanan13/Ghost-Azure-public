@@ -6,7 +6,7 @@ This template is a proof of concept that builds on forked from YannickRe/Ghost-A
 ### One-click deploy
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Ftesting%2Fazuredeploy.json)
 
-### Sample Architecture
+### Simplified Architecture
 ![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/architecture.png?raw=true)
 
 **The solution consists of the following parts:**
