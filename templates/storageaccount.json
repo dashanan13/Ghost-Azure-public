@@ -14,7 +14,14 @@
         }
     },
     "variables": {
-        "outboundips": "[split(parameters('webappoutboundiplist'), ',')]"
+        "outboundips": "[split(parameters('webappoutboundiplist'), ',')]",
+        
+        "serviceSasFunctionValues1": {
+            "canonicalizedResource": "[concat('/blob/', parameters('name'), '/', 'webapp1')]",
+            "signedResource": "c",
+            "signedPermission": "r",
+            "signedExpiry": "2050-01-01T00:00:00Z"
+        }
 
     },
     "resources": [
@@ -192,5 +199,6 @@
                 "publicAccess": "None"
             }
         }
-    ]
+    ],
+   "outputs": {}
 }

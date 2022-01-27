@@ -118,7 +118,7 @@
 
     "wafPolicyNameForFrontDoor": "wafPolicyForFrontDoor",
 
-    "storagename": "webappbackup",
+    "storagename": "[concat('webappbackup', '-', uniqueString(resourceGroup().id))]",
 
     "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
     "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webapp.json",
