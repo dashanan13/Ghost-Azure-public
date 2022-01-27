@@ -129,6 +129,25 @@
 
   "resources": [
 
+    //Network to restrict access to Storage account
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "networksetup",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('linkwebappplan')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "WebappPlanName": {"value": "[variables('hostingPlanName1')]"},
+          "Location": {"value": "[parameters('1st WebApp Location')]"},
+          "Sku": {"value": "[variables('sku')]"}
+        }
+      }
+    },
+    
     //Webapp plan 1
     {
       "type": "Microsoft.Resources/deployments",
