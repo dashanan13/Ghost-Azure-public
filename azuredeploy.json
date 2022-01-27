@@ -120,14 +120,14 @@
 
     "storagename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
 
-    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
-    "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webapp.json",
-    "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/network.json",
-    "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webslots.json",
-    "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/appinsight.json",
-    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
-    "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappipsec.json",
-    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json",
+    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/waf.json",
+    "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webapp.json",
+    "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/network.json",
+    "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webslots.json",
+    "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/appinsight.json",
+    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappplan.json",
+    "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappipsec.json",
+    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/frontdoorsetup.json",
     "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/storageaccount.json"
   },
 
