@@ -36,7 +36,7 @@ This installation contains two sections
 1.  Azure deployment for establishing resources along with the compiled code via azuredeploy.json and a convienent One-click deploy button.
     It will deploy 2 sets of (Azure webapp, application insight for the webapp and a plan for the webapp) and both those webapps will be fronted by Azure Front door and a WAF
 
-2.  The other part is a pipeline to keep the Webapps updated with latest code via a pipeline file azure-pipelines.yml (**Work in progress**)
+2.  The other part is a pipeline to keep the Webapps updated with latest code via a pipeline file azure-pipelines.yml (**Work in progress**).
     This is a Azure pipelines file that can be used with Azure Devops.
     Azure devops should have a connection to the subscription being deployed, pipeline will needs the following variables
     - **AzureSubscription**: Name of the connection that was established between Azure devops and azure subscription [How?](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)
