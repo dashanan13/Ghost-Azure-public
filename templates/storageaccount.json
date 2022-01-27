@@ -71,6 +71,16 @@
                             }
                         } 
                     ], */
+                    "copy": [
+                        {
+                            "name": "iprules",
+                            "count": "[length(variables('outboundips'))]",
+                            "input": {
+                                "value": "[variables('outboundips')[copyIndex('outboundips')]]",
+                                "action": "Allow"
+                            }
+                        }
+                    ],
                     "defaultAction": "Deny"
                 },
                 "supportsHttpsTrafficOnly": true,

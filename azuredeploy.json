@@ -429,7 +429,7 @@
         "parameters": {
           "WebappName": {"value": "[reference('webapp1').outputs.WebappName.value]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"},  // This value is passed from frontdoor as output after its creation and then used as input here to set IP restrictions
-          "webappsas": {"value": "[concat('https://16jasa.blob.core.windows.net/webapp1', reference('storageaccount').outputs.webapp1sas.value)]"}
+          "webappsas": {"value": "[concat('https://', variables('storagename'), '.blob.core.windows.net/webapp1', reference('storageaccount').outputs.webapp1sas.value)]"}
         }
       }
     },
@@ -452,7 +452,7 @@
         "parameters": {
           "WebappName": {"value": "[reference('webapp2').outputs.WebappName.value]"},
           "Frontdoorid": {"value": "[reference('frontdoor').outputs.frontdoorid.value]"},
-          "webappsas": {"value": "[concat('https://16jasa.blob.core.windows.net/webapp2', reference('storageaccount').outputs.webapp2sas.value)]"}
+          "webappsas": {"value": "[concat('https://', variables('storagename'), '.blob.core.windows.net/webapp2', reference('storageaccount').outputs.webapp2sas.value)]"}
         }
       }
     }
