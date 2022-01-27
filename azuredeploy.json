@@ -128,7 +128,7 @@
     "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
     "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappipsec.json",
     "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json",
-    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/storageaccount.json"
+    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/storageaccount.json"
   },
 
   "resources": [
