@@ -61,7 +61,7 @@
                             "state": "Succeeded"
                         }
                     ],
-                    "ipRules": [
+                    /* "ipRules": [
                        {
                             "value": "[variables('outboundips')[copyIndex('outboundips')]]",
                             "action": "Allow",
@@ -70,6 +70,16 @@
                                 "count": "[length(variables('outboundips'))]"
                             }
                         } 
+                    ], */
+                    "copy": [
+                        {
+                            "name": "ipRules",
+                            "count": "[length(variables('outboundips'))]",
+                            "input": {
+                                "value": "[variables('outboundips')[copyIndex('ipRules')]]",
+                                "action": "Allow"
+                            }
+                        }
                     ],
                     "defaultAction": "Deny"
                 },
