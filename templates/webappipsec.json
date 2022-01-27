@@ -11,12 +11,14 @@
     },
     "webappsas": {
       "type": "string"
+    },
+    "baseTime": {
+        "type": "string",
+        "defaultValue": "[utcNow('u')]"
     }
   },
   "functions": [],
-  "variables": {
-    "basetime": "[utcNow('u')]"
-  },
+  "variables": {},
 
   "resources": [
     {
@@ -76,7 +78,7 @@
           "frequencyUnit": "Day",
           "keepAtLeastOneBackup": true,
           "retentionPeriodInDays": 7,
-          "startTime": "[dateTimeAdd(variables('baseTime'), 'PT1H')]"
+          "startTime": "[dateTimeAdd(parameters('baseTime'), 'PT1H')]"
         },
         "enabled": "bool",
         "storageAccountUrl": "[parameters('webappsas')]"

@@ -11,23 +11,26 @@
         },
         "webappoutboundiplist": {
             "type": "string"
+        },
+        "baseTime": {
+            "type": "string",
+            "defaultValue": "[utcNow('u')]"
         }
     },
     "variables": {
         "outboundips": "[split(parameters('webappoutboundiplist'), ',')]",
         
-        "basetime": "[utcNow('u')]",
         "serviceSasFunctionValues1": {
             "canonicalizedResource": "[concat('/blob/', parameters('name'), '/', 'webapp1')]",
             "signedResource": "c",
             "signedPermission": "racwdlup",
-            "signedExpiry": "[dateTimeAdd(variables('baseTime'), 'P3Y')]"
+            "signedExpiry": "[dateTimeAdd(parameters('baseTime'), 'P3Y')]"
         },
         "serviceSasFunctionValues2": {
             "canonicalizedResource": "[concat('/blob/', parameters('name'), '/', 'webapp2')]",
             "signedResource": "c",
             "signedPermission": "racwdlup",
-            "signedExpiry": "[dateTimeAdd(variables('baseTime'), 'P3Y')]"
+            "signedExpiry": "[dateTimeAdd(parameters('baseTime'), 'P3Y')]"
         }
 
     },
