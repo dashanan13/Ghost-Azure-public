@@ -8,10 +8,15 @@
     },
     "Frontdoorid": {
       "type": "string"
+    },
+    "webappsas": {
+      "type": "string"
     }
   },
   "functions": [],
-  "variables": {},
+  "variables": {
+    "basetime": "[utcNow('u')]"
+  },
 
   "resources": [
     {
@@ -56,6 +61,25 @@
                   "description": "Allow all access"
               }
           ]
+      
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2021-02-01",
+      "name": "backup",
+      "kind": "string",
+      "properties": {
+        "backupName": "dailybackup",
+        "backupSchedule": {
+          "frequencyInterval": 1,
+          "frequencyUnit": "Day",
+          "keepAtLeastOneBackup": true,
+          "retentionPeriodInDays": 7,
+          "startTime": "[dateTimeAdd(variables('baseTime'), 'PT1H')]"
+        },
+        "enabled": "bool",
+        "storageAccountUrl": "[parameters('webappsas')]"
       }
     }
   ],

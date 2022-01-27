@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "defaultValue": "webappbackup",
+            "defaultValue": "wabkp",
             "type": "String"
         },
         "virtualNetwork": {
@@ -16,11 +16,18 @@
     "variables": {
         "outboundips": "[split(parameters('webappoutboundiplist'), ',')]",
         
+        "basetime": "[utcNow('u')]",
         "serviceSasFunctionValues1": {
             "canonicalizedResource": "[concat('/blob/', parameters('name'), '/', 'webapp1')]",
             "signedResource": "c",
-            "signedPermission": "r",
-            "signedExpiry": "2050-01-01T00:00:00Z"
+            "signedPermission": "racwdlup",
+            "signedExpiry": "[dateTimeAdd(variables('baseTime'), 'P3Y')]"
+        },
+        "serviceSasFunctionValues2": {
+            "canonicalizedResource": "[concat('/blob/', parameters('name'), '/', 'webapp2')]",
+            "signedResource": "c",
+            "signedPermission": "racwdlup",
+            "signedExpiry": "[dateTimeAdd(variables('baseTime'), 'P3Y')]"
         }
 
     },
@@ -200,5 +207,14 @@
             }
         }
     ],
-   "outputs": {}
+   "outputs": {
+      "webapp1sas": {
+          "type": "string",
+          "value": "[listServiceSas(parameters('name'), '2018-02-01', variables('serviceSasFunctionValues1')).serviceSasToken]"
+      },
+      "webapp2sas": {
+          "type": "string",
+          "value": "[listServiceSas(parameters('name'), '2018-02-01', variables('serviceSasFunctionValues2')).serviceSasToken]"
+      }
+   }
 }
