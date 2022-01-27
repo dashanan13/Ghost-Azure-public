@@ -69,7 +69,7 @@
     {
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2021-02-01",
-      "name": "backup",
+      "name": "[concat(parameters('WebappName'), '/backup')]",
       "kind": "string",
       "properties": {
         "backupName": "dailybackup",
