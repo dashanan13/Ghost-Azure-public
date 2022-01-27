@@ -405,7 +405,7 @@
         "parameters": {
           "Name": {"value": "[variables('storagename')]"},
           "virtualNetwork": {"value": "[reference('networksetup').outputs.NetworkrefID.value]"},
-          "webappoutboundiplist": {"value": "[concat(reference('webapp1').outputs.frontdoorid.value, ',', reference('webapp2').outputs.frontdoorid.value)]"}
+          "webappoutboundiplist": {"value": "[concat(reference('webapp1').outputs.OutboundIPs.value, ',', reference('webapp2').outputs.OutboundIPs.value)]"}
         }
       }
     },
@@ -463,15 +463,15 @@
     },
     "webapp1iplist": {
       "type": "string",
-      "value": "[reference('webapp1').outputs.frontdoorid.value]"
+      "value": "[reference('webapp1').outputs.OutboundIPs.value]"
     },
     "webapp2iplist": {
       "type": "string",
-      "value": "[reference('webapp2').outputs.frontdoorid.value]"
+      "value": "[reference('webapp2').outputs.OutboundIPs.value]"
     },
     "networkid": {
       "type": "string",
-      "value": "[reference('networksetup').outputs.frontdoorid.value]"
+      "value": "[reference('networksetup').outputs.NetworkrefID.value]"
     }
 
   }
