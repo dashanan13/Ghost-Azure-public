@@ -56,3 +56,4 @@ Note: The website starts to warmup only when it is accessed and it takes a few m
 
 ### Azure App Service Deployment Center
 More info on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment#deploy-continuously-from-github)
+More info on [Adding Webjobs in package](https://github.com/projectkudu/kudu/wiki/WebJobs)
