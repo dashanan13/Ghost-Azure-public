@@ -5,7 +5,7 @@ Straight out of the box, the current 1.x and 2.x versions of Ghost aren't compat
 This template is a proof of concept that builds on forked from YannickRe/Ghost-Azure (node code adapted for a single webapp), and tries to make it into a load balanced regional outage tollerent architecture.
 
 ### One-click deploy
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Ftesting%2Fazuredeploy.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdashanan13%2FGhost-Azure-public%2Flogworkspace%2Fazuredeploy.json)
 
 ### Simplified Architecture
 ![Architecture](https://github.com/dashanan13/Ghost-Azure-public/blob/master/templates/architecture.png?raw=true)
