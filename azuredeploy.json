@@ -505,7 +505,7 @@
     },
     "logwrkspaceid": {
       "type": "string",
-      "value": "[reference('storageaccount').outputs.logworkspaceid.value]"
+      "value": "[reference('logworkspace').outputs.logworkspaceid.value]"
     }
 
   }
