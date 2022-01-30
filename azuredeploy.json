@@ -120,7 +120,7 @@
 
     "storagename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
 
-    "logworkspacename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
+    "logworkspacename": "[concat('lgwrkspc', uniqueString(resourceGroup().id))]",
 
     "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/waf.json",
     "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/webapp.json",
