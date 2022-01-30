@@ -130,7 +130,7 @@
     "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/webappplan.json",
     "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/webappipsec.json",
     "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/frontdoorsetup.json",
-    "linklogworkspace": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/frontdoorsetup.json",
+    "linklogworkspace": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/loganlytcswrkspc.json",
     "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/storageaccount.json"
   },
 
