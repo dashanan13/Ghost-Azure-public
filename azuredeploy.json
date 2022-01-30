@@ -120,15 +120,15 @@
 
     "storagename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
 
-    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/waf.json",
-    "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webapp.json",
-    "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/network.json",
-    "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webslots.json",
-    "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/appinsight.json",
-    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappplan.json",
-    "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappipsec.json",
-    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/frontdoorsetup.json",
-    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/storageaccount.json"
+    "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/waf.json",
+    "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webapp.json",
+    "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/network.json",
+    "linkweappslot": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webslots.json",
+    "linkappinsight": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/appinsight.json",
+    "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappplan.json",
+    "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/webappipsec.json",
+    "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/frontdoorsetup.json",
+    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/master/templates/storageaccount.json"
   },
 
   "resources": [
@@ -456,7 +456,6 @@
         }
       }
     }
-
   ],
   "outputs": {
     "frontdoorid": {
@@ -477,12 +476,11 @@
     },
     "webapp1sas": {
       "type": "string",
-      "value": "[concat('https://16jasa.blob.core.windows.net/webapp1', reference('storageaccount').outputs.webapp1sas.value)]"
+      "value": "[concat('https://', variables('storagename'), '.blob.core.windows.net/webapp1', reference('storageaccount').outputs.webapp1sas.value)]"
     },
     "webapp2sas": {
       "type": "string",
-      "value": "[concat('https://16jasa.blob.core.windows.net/webapp2', reference('storageaccount').outputs.webapp2sas.value)]"
+      "value": "[concat('https://', variables('storagename'), 'blob.core.windows.net/webapp2', reference('storageaccount').outputs.webapp2sas.value)]"
     }
-
   }
 }
