@@ -15,7 +15,6 @@
             "name": "[parameters('name')]",
             "location": "westeurope",
             "properties": {
-                "provisioningState": "Succeeded",
                 "sku": {
                     "name": "pergb2018"
                 },
