@@ -120,6 +120,8 @@
 
     "storagename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
 
+    "logworkspacename": "[concat('wabkp', uniqueString(resourceGroup().id))]",
+
     "linkwaf": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/waf.json",
     "linkwebapp": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webapp.json",
     "linknetwork": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/network.json",
@@ -128,7 +130,8 @@
     "linkwebappplan": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappplan.json",
     "linkwebappipsec": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/webappipsec.json",
     "linkfrontdoor": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/frontdoorsetup.json",
-    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/storageaccount.json"
+    "linkstorageaccount": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/testing/templates/storageaccount.json",
+    "linklogworkspace": "https://raw.githubusercontent.com/dashanan13/Ghost-Azure-public/logworkspace/templates/frontdoorsetup.json"
   },
 
   "resources": [
@@ -143,6 +146,23 @@
         "templateLink": {
           "uri": "[variables('linknetwork')]",
           "contentVersion": "1.0.0.0"
+        }
+      }
+    },
+
+    //Log analytics workspace for the logs
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "logworkspace",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "name": "[variables('linklogworkspace')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "name": {"value": "[variables('logworkspacename')]"}
         }
       }
     },
